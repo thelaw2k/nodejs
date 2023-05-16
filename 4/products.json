@@ -1,0 +1,11 @@
+[
+  {
+    "title": "Producto 1 Actualizado",
+    "description": "Este es un producto prueba",
+    "price": 15.99,
+    "thumbnail": "Sin imagen",
+    "code": "abc123",
+    "stock": 25,
+    "id": 1
+  }
+]

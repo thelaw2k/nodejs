@@ -6,12 +6,10 @@ class ProductManager {
   
     addProduct(product) {
       if (!product.title || !product.description || !product.price || !product.thumbnail || !product.code || !product.stock) {
-        console.log("Error: Todos los campos son obligatorios.");
-        return;
+        return("Error: Todos los campos son obligatorios.");
       }
       if (this.products.some(p => p.code === product.code)) {
-        console.log("Error: El código del producto ya existe.");
-        return;
+        return("Error: El código del producto ya existe.");
       }
       product.id = this.currentId++;
       this.products.push(product);
@@ -24,8 +22,7 @@ class ProductManager {
     getProductById(id) {
       const product = this.products.find(p => p.id === id);
       if (!product) {
-        console.log("Not found");
-        return;
+        return("Not found");
       }
       return product;
     }
@@ -49,10 +46,10 @@ class ProductManager {
   
   productManager.addProduct({
     title: "producto prueba",
-    description: "Este es un producto prueba",
+    description: "Este es un producto prueba2",
     price: 200,
     thumbnail: "Sin imagen",
-    code: "abc123",
+    code: "abc12322",
     stock: 25
   });
   
