@@ -72,10 +72,6 @@ class ProductManager {
   }
 }
 
-//module.exports = ProductManager;
-
-//const ProductManager = require('./ProductManager');
-
 // Crear una instancia de ProductManager con la ruta del archivo
 const productManager = new ProductManager('products.json');
 
@@ -107,4 +103,4 @@ const updatedProduct = {
 productManager.updateProduct(productId, updatedProduct);
 
 // Eliminar un producto
-//productManager.deleteProduct(productId);
+productManager.deleteProduct(productId);
