@@ -1,0 +1,29 @@
+[
+  {
+    "title": "Producto 1 Actualizado",
+    "description": "Este es un producto prueba 1",
+    "price": 15.99,
+    "thumbnail": "Sin imagen 1",
+    "code": "abc123",
+    "stock": 25,
+    "id": 1
+  }
+  {
+    "title": "Producto 2 Actualizado",
+    "description": "Este es un producto prueba 2",
+    "price": 15.99,
+    "thumbnail": "Sin imagen 2",
+    "code": "abc231",
+    "stock": 50,
+    "id": 2
+  }
+  {
+    "title": "Producto 3 Actualizado",
+    "description": "Este es un producto prueba 3",
+    "price": 20.99,
+    "thumbnail": "Sin imagen 3",
+    "code": "abc321",
+    "stock": 120,
+    "id": 3
+  }
+]
