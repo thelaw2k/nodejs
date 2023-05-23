@@ -7,7 +7,7 @@
     "code": "abc123",
     "stock": 25,
     "id": 1
-  }
+  },
   {
     "title": "Producto 2 Actualizado",
     "description": "Este es un producto prueba 2",
@@ -16,7 +16,7 @@
     "code": "abc231",
     "stock": 50,
     "id": 2
-  }
+  },
   {
     "title": "Producto 3 Actualizado",
     "description": "Este es un producto prueba 3",

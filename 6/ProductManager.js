@@ -44,11 +44,13 @@ class ProductManager {
 // Crear una instancia de ProductManager con la ruta del archivo
 const productManager = new ProductManager('products.json');
 
-// Obtener todos los productos
+//// Obtener todos los productos
 const products = productManager.getProducts();
-console.log(products);
+//console.log(products);
 
-// Obtener un producto por su ID
-const productId = 1;
-const product = productManager.getProductById(productId);
-console.log(product);
+//// Obtener un producto por su ID
+//const productId = 1;
+//const product = productManager.getProductById(productId);
+//console.log(product);
+
+module.exports = ProductManager;
