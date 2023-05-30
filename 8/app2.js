@@ -1,23 +1,24 @@
 const express = require('express');
 const fs = require('fs');
+const { v4: uuidv4 } = require('uuid');
 
 const app = express();
 app.use(express.json());
-
-let productIdCounter = 1; // Contador para generar IDs de productos
-let cartIdCounter = 1; // Contador para generar IDs de carritos
 
 // Rutas para los productos
 const productsRouter = express.Router();
 
 productsRouter.get('/', (req, res) => {
+  // Obtener todos los productos de la base (archivo productos.json)
   const products = JSON.parse(fs.readFileSync('productos.json', 'utf-8'));
+  // Aplicar la limitación si se proporciona el parámetro ?limit
   const limit = req.query.limit;
   const limitedProducts = limit ? products.slice(0, parseInt(limit)) : products;
   res.json(limitedProducts);
 });
 
 productsRouter.get('/:pid', (req, res) => {
+  // Obtener un producto por su id
   const pid = req.params.pid;
   const products = JSON.parse(fs.readFileSync('productos.json', 'utf-8'));
   const product = products.find(p => p.id === pid);
@@ -29,15 +30,17 @@ productsRouter.get('/:pid', (req, res) => {
 });
 
 productsRouter.post('/', (req, res) => {
+  // Agregar un nuevo producto
   const product = req.body;
   const products = JSON.parse(fs.readFileSync('productos.json', 'utf-8'));
-  product.id = productIdCounter++; // Generar un nuevo ID basado en el contador
+  product.id = uuidv4(); // Generar un nuevo id único
   products.push(product);
   fs.writeFileSync('productos.json', JSON.stringify(products, null, 2));
   res.status(201).json(product);
 });
 
 productsRouter.put('/:pid', (req, res) => {
+  // Actualizar un producto por su id
   const pid = req.params.pid;
   const updatedProduct = req.body;
   const products = JSON.parse(fs.readFileSync('productos.json', 'utf-8'));
@@ -52,6 +55,7 @@ productsRouter.put('/:pid', (req, res) => {
 });
 
 productsRouter.delete('/:pid', (req, res) => {
+  // Eliminar un producto por su id
   const pid = req.params.pid;
   const products = JSON.parse(fs.readFileSync('productos.json', 'utf-8'));
   const index = products.findIndex(p => p.id === pid);
@@ -70,8 +74,9 @@ app.use('/api/products', productsRouter);
 const cartsRouter = express.Router();
 
 cartsRouter.post('/', (req, res) => {
+  // Crear un nuevo carrito
   const cart = {
-    id: cartIdCounter++, // Generar un nuevo ID basado en el contador
+    id: uuidv4(),
     products: []
   };
   fs.writeFileSync('carrito.json', JSON.stringify(cart, null, 2));
@@ -79,6 +84,7 @@ cartsRouter.post('/', (req, res) => {
 });
 
 cartsRouter.get('/:cid', (req, res) => {
+  // Listar los productos del carrito por su id
   const cid = req.params.cid;
   const cart = JSON.parse(fs.readFileSync('carrito.json', 'utf-8'));
   if (cart.id === cid) {
@@ -89,6 +95,7 @@ cartsRouter.get('/:cid', (req, res) => {
 });
 
 cartsRouter.post('/:cid/product/:pid', (req, res) => {
+  // Agregar un producto al carrito
   const cid = req.params.cid;
   const pid = req.params.pid;
   const quantity = req.body.quantity || 1;
@@ -109,6 +116,7 @@ cartsRouter.post('/:cid/product/:pid', (req, res) => {
 
 app.use('/api/carts', cartsRouter);
 
+// Iniciar el servidor en el puerto 8080
 app.listen(8080, () => {
   console.log('Servidor iniciado en el puerto 8080');
 });
